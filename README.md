@@ -16,6 +16,10 @@
 
 ---
 
+My domain would be trying out the campus dining mock at the University of Houston. We have some information in relation to the Dining website on campus and menu from our local restaurant. We also add information of the latest hours at the university, the meal plan information, and the Dietary, Allergen Restrictions.
+
+
+
 ## Document Sources
 
 <!-- List every source you collected documents from.
@@ -24,16 +28,16 @@
 
 | # | Source | Type | URL or file path |
 |---|--------|------|-----------------|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
-| 6 | | | |
-| 7 | | | |
-| 8 | | | |
-| 9 | | | |
-| 10 | | | |
+| 1 | Chick-fil-A Menu  | Website | https://dineoncampus.com/uh/whats-on-the-menu/chick-fil-a/2026-06-08/every-day|
+| 2 | Panda Express Menu| Website | https://dineoncampus.com/uh/whats-on-the-menu/panda-express/2026-06-08/every-day|
+| 3 | The Taco Stand Lunch| Website | https://tacostandhtx.com/lunch-dinner/ |
+| 4 | The Burger Joint Menu| Website | https://burgerjointhtx.com/restaurant-menu/|
+| 5 | Starbucks Menu    | Website | https://www.starbucks.com/menu/|
+| 6 | McAlister's Deli  | Website | https://www.mcalistersdeli.com/menu/| |
+| 7 | RAD Center Reddit Review | Website | https://www.reddit.com/r/UniversityOfHouston/comments/1f3sgas/food_at_rad_center/|
+| 8 | Time Table at UH  | Website | https://dineoncampus.com/uh/hours-of-operation|
+| 9 | Meal Plan Information| Website | https://dineoncampus.com/uh/20262027-meal-plans|
+| 10 | Dietary & Allergen Restrictions| Website | https://new.dineoncampus.com/uh/dietary-and-allergen-restrictions|
 
 ---
 
