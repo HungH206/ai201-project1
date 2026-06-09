@@ -74,12 +74,12 @@ Since these sources are taken in the form of a website, Recursive Chunking is be
      "What do students say about wait times at [dining hall name] during lunch?" is testable. -->
 
 | # | Question | Expected answer |
-|---|----------|-----------------|
-| 1 | | |
-| 2 | | |
-| 3 | | |
-| 4 | | |
-| 5 | | |
+|---|-------------------------------------------|-----------------|
+| 1 | What is the current hours at Chick-Fil-A? | The current opening hours are from 8am to 4pm, Monday to Thursday|
+| 2 | What are the spicy items available at Panda Express? | Kung Pao Chicken, Beijing Beef, Spicy Orange Chicken, Sweetfire Chicken Breast, Black Pepper Steak, Black Pepper Chicken|
+| 3 | Is The Burger Joint open on campus this summer? | No |
+| 4 | Is Shellfish a common food allergen? | Yes |
+| 5 | Is the meal plan only for student with on-campus residential status?| No, the meal plans are for both student with on-campus residential status and commuter status. |
 
 ---
 
