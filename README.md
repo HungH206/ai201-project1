@@ -88,9 +88,11 @@ Final Chunk Count: 56 chunks
      Do not just say "I told it to use the documents" — show the actual instruction or explain
      the mechanism. -->
 
-**System prompt grounding instruction:**
+**System prompt grounding instruction:** The generation code uses this system instruction in `query.py`: "Answer using only the provided retrieved documents. Do not use outside knowledge, assumptions, or guesses. Do not explain using brand knowledge, common knowledge, or facts that are not directly stated in the retrieved text. If the retrieved documents do not contain enough information, answer exactly: 'I don't have enough information on that.' Keep the answer concise and factual. Do not invent source names or URLs."
 
-**How source attribution is surfaced in the response:**
+The `ask()` function also filters retrieval results before generation. Only chunks with distance `<= 0.65` are included in the LLM context, and at most three chunks are passed to the model. If no retrieved chunk passes that threshold, the system returns "I don't have enough information on that" without calling the LLM.
+
+**How source attribution is surfaced in the response:** Source attribution is appended programmatically instead of relying on the LLM to cite sources. The Gradio interface displays a separate "Retrieved from" field containing each source title, source URL or local file path, chunk id, and distance score.
 
 ---
 
