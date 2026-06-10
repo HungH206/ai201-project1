@@ -1,0 +1,119 @@
+[
+  {
+    "source_slug": "01_chick_fil_a_menu",
+    "source_title": "Chick-fil-A Menu",
+    "source_url": "https://chick-fil-a-menu.net",
+    "status": "chunked",
+    "error": null,
+    "cleaned_token_count": 4510,
+    "chunk_count": 11
+  },
+  {
+    "source_slug": "02_panda_express_menu",
+    "source_title": "Panda Express Menu",
+    "source_url": "https://pandaexpressmenuu.us",
+    "status": "chunked",
+    "error": null,
+    "cleaned_token_count": 6143,
+    "chunk_count": 15
+  },
+  {
+    "source_slug": "03_taco_stand_menu",
+    "source_title": "The Taco Stand Lunch and Dinner Menu",
+    "source_url": "https://tacostandhtx.com/lunch-dinner/",
+    "status": "chunked",
+    "error": null,
+    "cleaned_token_count": 801,
+    "chunk_count": 2
+  },
+  {
+    "source_slug": "04_burger_joint_menu",
+    "source_title": "The Burger Joint Menu",
+    "source_url": "https://burgerjointhtx.com/restaurant-menu/",
+    "status": "chunked",
+    "error": null,
+    "cleaned_token_count": 1091,
+    "chunk_count": 3
+  },
+  {
+    "source_slug": "05_starbucks_menu",
+    "source_title": "Starbucks Menu",
+    "source_url": "https://starbucksreserveonly.com",
+    "status": "chunked",
+    "error": null,
+    "cleaned_token_count": 6445,
+    "chunk_count": 15
+  },
+  {
+    "source_slug": "06_what_it_do_bbq_menu",
+    "source_title": "What It Do BBQ Menu",
+    "source_url": "https://www.whatitdobbq.com/menu",
+    "status": "chunked",
+    "error": null,
+    "cleaned_token_count": 536,
+    "chunk_count": 2
+  },
+  {
+    "source_slug": "07_Food_At_UH",
+    "source_title": "Food At University of Houston",
+    "source_url": "https://thedailycougar.com/2023/07/15/food-on-campus-a-look-at-what-uh-has-to-offer/",
+    "status": "chunked",
+    "error": null,
+    "cleaned_token_count": 834,
+    "chunk_count": 2
+  },
+  {
+    "source_slug": "08_uh_hours",
+    "source_title": "University of Houston Hours of Operation",
+    "source_url": "https://www.uh.edu/studentcenters/about-us/hours-of-operation/index.php",
+    "status": "chunked",
+    "error": null,
+    "cleaned_token_count": 187,
+    "chunk_count": 1
+  },
+  {
+    "source_slug": "09_meal_plan_information",
+    "source_title": "University of Houston Meal Plan Information",
+    "source_url": "https://www.uh.edu/af-auxiliary-services/dining-services/meal-plan-rates/meal-plan-rates.php",
+    "status": "chunked",
+    "error": null,
+    "cleaned_token_count": 365,
+    "chunk_count": 1
+  },
+  {
+    "source_slug": "10_dining_outage_tracker",
+    "source_title": "University of Houston Dining Outage Tracker",
+    "source_url": "https://www.uh.edu/af-auxiliary-services/dining-services/dining-outage-tracker/",
+    "status": "chunked",
+    "error": null,
+    "cleaned_token_count": 12,
+    "chunk_count": 1
+  },
+  {
+    "source_slug": "11_manual_panda_entrees",
+    "source_title": "Panda Express Entree Reference",
+    "source_url": "manual://documents/manual/11_manual_panda_entrees.txt",
+    "status": "chunked",
+    "error": null,
+    "cleaned_token_count": 79,
+    "chunk_count": 1
+  },
+  {
+    "source_slug": "12_manual_uh_dining_halls",
+    "source_title": "University of Houston Dining Halls Reference",
+    "source_url": "manual://documents/manual/12_manual_uh_dining_halls.txt",
+    "status": "chunked",
+    "error": null,
+    "cleaned_token_count": 72,
+    "chunk_count": 1
+  },
+  {
+    "source_slug": "13_manual_meal_plan_eligibility",
+    "source_title": "University of Houston Meal Plan Eligibility Reference",
+    "source_url": "manual://documents/manual/13_manual_meal_plan_eligibility.txt",
+    "status": "chunked",
+    "error": null,
+    "cleaned_token_count": 135,
+    "chunk_count": 1
+  }
+]

@@ -28,16 +28,19 @@ My domain would be trying out the campus dining mock at the University of Housto
 
 | # | Source | Type | URL or file path |
 |---|--------|------|-----------------|
-| 1 | Chick-fil-A Menu  | Website | https://dineoncampus.com/uh/whats-on-the-menu/chick-fil-a/2026-06-08/every-day|
-| 2 | Panda Express Menu| Website | https://dineoncampus.com/uh/whats-on-the-menu/panda-express/2026-06-08/every-day|
-| 3 | The Taco Stand Lunch| Website | https://tacostandhtx.com/lunch-dinner/ |
-| 4 | The Burger Joint Menu| Website | https://burgerjointhtx.com/restaurant-menu/|
-| 5 | Starbucks Menu    | Website | https://www.starbucks.com/menu/|
-| 6 | McAlister's Deli  | Website | https://www.mcalistersdeli.com/menu/| |
-| 7 | RAD Center Reddit Review | Website | https://www.reddit.com/r/UniversityOfHouston/comments/1f3sgas/food_at_rad_center/|
-| 8 | Time Table at UH  | Website | https://dineoncampus.com/uh/hours-of-operation|
-| 9 | Meal Plan Information| Website | https://dineoncampus.com/uh/20262027-meal-plans|
-| 10 | Dietary & Allergen Restrictions| Website | https://new.dineoncampus.com/uh/dietary-and-allergen-restrictions|
+| 1 | Chick-fil-A Menu | Website | https://chick-fil-a-menu.net |
+| 2 | Panda Express Menu | Website | https://pandaexpressmenuu.us |
+| 3 | The Taco Stand Lunch and Dinner Menu | Website | https://tacostandhtx.com/lunch-dinner/ |
+| 4 | The Burger Joint Menu | Website | https://burgerjointhtx.com/restaurant-menu/ |
+| 5 | Starbucks Menu | Website | https://starbucksreserveonly.com |
+| 6 | What It Do BBQ Menu | Website | https://www.whatitdobbq.com/menu |
+| 7 | Food At University of Houston | Website | https://thedailycougar.com/2023/07/15/food-on-campus-a-look-at-what-uh-has-to-offer/ |
+| 8 | University of Houston Hours of Operation | Website | https://www.uh.edu/studentcenters/about-us/hours-of-operation/index.php |
+| 9 | University of Houston Meal Plan Information | Website | https://www.uh.edu/af-auxiliary-services/dining-services/meal-plan-rates/meal-plan-rates.php |
+| 10 | University of Houston Dining Outage Tracker | Website | https://www.uh.edu/af-auxiliary-services/dining-services/dining-outage-tracker/ |
+| 11 | Panda Express Entree Reference | Local text | documents/manual/11_manual_panda_entrees.txt |
+| 12 | University of Houston Dining Halls Reference | Local text | documents/manual/12_manual_uh_dining_halls.txt |
+| 13 | University of Houston Meal Plan Eligibility Reference | Local text | documents/manual/13_manual_meal_plan_eligibility.txt |
 
 ---
 
@@ -50,13 +53,15 @@ My domain would be trying out the campus dining mock at the University of Housto
      - Any preprocessing you did before chunking (e.g., stripping HTML, removing headers)
      - What your final chunk count was across all documents -->
 
-**Chunk size:**
+**Chunk size:** 500 tokens
 
-**Overlap:**
+**Overlap:** 75 tokens
 
-**Why these choices fit your documents:**
+**Why these choices fit your documents:** Most sources are restaurant menus, UH dining pages, and short local reference notes. A 500-token chunk keeps related menu sections, meal plan details, and dining hall context together, while a 75-token overlap helps preserve context when an item list or policy explanation crosses a chunk boundary. The pipeline strips HTML, cookie text, repeated navigation, and footers where possible, and it uses local text references for facts that were buried or missing in noisy web pages.
+
 
 **Final chunk count:**
+Final Chunk Count: 56 chunks
 
 ---
 
@@ -68,9 +73,9 @@ My domain would be trying out the campus dining mock at the University of Housto
      Consider: context length limits, multilingual support, accuracy on domain-specific text,
      latency, and local vs. API-hosted. -->
 
-**Model used:**
+**Model used:** `sentence-transformers/all-MiniLM-L6-v2`
 
-**Production tradeoff reflection:**
+**Production tradeoff reflection:** I used `all-MiniLM-L6-v2` because it runs locally with no API key, has low latency, and is strong enough for a small RAG corpus. If this were deployed for real users and cost was not a constraint, I would compare larger embedding models for better semantic accuracy, longer context handling, and stronger performance on noisy menu/policy text. I would also weigh latency and whether the model should run locally or through a hosted API.
 
 ---
 
@@ -97,11 +102,11 @@ My domain would be trying out the campus dining mock at the University of Housto
 
 | # | Question | Expected answer | System response (summarized) | Retrieval quality | Response accuracy |
 |---|----------|-----------------|------------------------------|-------------------|-------------------|
-| 1 | | | | | |
-| 2 | | | | | |
-| 3 | | | | | |
-| 4 | | | | | |
-| 5 | | | | | |
+| 1 | What are the breakfast items at Chick-fil-A? | Chick-fil-A breakfast items include Chicken Biscuit, Spicy Chicken Biscuit, Chick-n-Minis, Egg White Grill, Hash Brown Scramble Burrito, Hash Brown Scramble Bowl, Chicken, Egg & Cheese Biscuit, Bacon, Egg & Cheese Biscuit, Sausage, Egg & Cheese Biscuit, breakfast muffins, Hash Browns, Berry Parfait, and Fruit Cup. | Retrieved Chick-fil-A chunks first, including the breakfast menu and breakfast item list. | Relevant | Accurate |
+| 2 | What entree items are available at Panda Express? | Panda Express entree items include options such as Orange Chicken, Kung Pao Chicken, Beijing Beef, Black Pepper Chicken, Honey Sesame Chicken Breast, Grilled Teriyaki Chicken, Broccoli Beef, Mushroom Chicken, String Bean Chicken Breast, Honey Walnut Shrimp, and Black Pepper Angus Steak. | Retrieved the local Panda Express entree reference as the top result, followed by Panda Express menu chunks. | Relevant | Accurate |
+| 3 | Does The Burger Joint have any alcoholic root beer? | Yes. The Burger Joint menu lists Not Your Father's Root Beer Float as alcoholic and also lists St. Arnold's Root Beer Float. | Retrieved The Burger Joint menu first with Not Your Father's Root Beer Float marked as alcoholic. | Relevant | Accurate |
+| 4 | Are there any dining halls at the University of Houston? | Yes. The UH food source mentions dining halls such as Moody Towers Dining Commons and Cougar Woods Dining Commons. | Retrieved the local UH dining halls reference first, including Moody Towers Dining Commons and Cougar Woods Dining Commons. | Relevant | Accurate |
+| 5 | Is there a commuter meal plan? | Yes. The meal plan source lists Block and Cougar Dining Dollars plans, and it mentions commuter students in the meal plan eligibility/cancellation information. | Retrieved the local UH meal plan eligibility reference first, including commuter students and Block/Cougar Dining Dollars plans. | Relevant | Accurate |
 
 **Retrieval quality:** Relevant / Partially relevant / Off-target  
 **Response accuracy:** Accurate / Partially accurate / Inaccurate
