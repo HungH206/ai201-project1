@@ -129,12 +129,25 @@ The `ask()` function also filters retrieval results before generation. Only chun
      results from an unrelated review" is an explanation. -->
 
 **Question that failed:**
+Is there a The Taco Stand Dessert Menu?
+
+**Why it failed:**
+It failed because the source data for The Taco Stand dessert menu was limited. The collected Taco Stand menu only included churros as the dessert item, but the assistant also pulled dessert information from another restaurant because those chunks were semantically similar.
 
 **What the system returned:**
+Yes, there is a dessert menu at The Taco Stand. The dessert menu includes: 
+- Churros - $5.99 
+
+Additionally, another dessert menu is available at What It Do BBQ, which includes: 
+- Furrest Funnel Cake Fries - $8.99 
+- Popajoe's Deep Fried Bread Pudding - $8.99 
+- Keitho Churros - $8.99
 
 **Root cause (tied to a specific pipeline stage):**
+The problem happened during retrieval and context construction. The vector search retrieved chunks about desserts from both The Taco Stand and What It Do BBQ because they shared similar words such as "dessert" and "churros." Since the generation step received context from more than one restaurant, the model blended the results instead of limiting the answer to The Taco Stand only.
 
 **What you would change to fix it:**
+I would add stronger metadata filtering during retrieval so that if a question names a specific restaurant, the system only passes chunks from that restaurant into the generation step. I would also improve the ingestion data for The Taco Stand by checking whether the source page has a fuller dessert section or by adding a manual verified reference. If the only Taco Stand dessert item in the documents is churros, the answer should say that the retrieved documents only list churros and should not include desserts from other restaurants.
 
 ---
 
@@ -144,8 +157,10 @@ The `ask()` function also filters retrieval results before generation. Only chun
      Answer both questions with at least 2–3 sentences each. -->
 
 **One way the spec helped you during implementation:**
+The spec helped me keep the pipeline organized because it already separated the work into ingestion, chunking, embedding, retrieval, and generation. The chunk size, overlap, embedding model, and top-k value were written before coding, so I could use those as concrete implementation requirements instead of making those choices randomly during development. The five evaluation questions also gave me a way to check whether the system was retrieving the right dining information after each major step.
 
 **One way your implementation diverged from the spec, and why:**
+My original spec said I might use FAISS or Chroma, but the final implementation uses Chroma as the local vector store. I chose Chroma because it stores documents, metadata, embeddings, and distance scores together, which made retrieval testing and source attribution easier for this project. I also added manual reference documents for some facts because a few website sources were noisy or incomplete, and those manual files helped the system answer the planned evaluation questions more reliably.
 
 ---
 
@@ -162,12 +177,12 @@ The `ask()` function also filters retrieval results before generation. Only chun
 
 **Instance 1**
 
-- *What I gave the AI:*
-- *What it produced:*
-- *What I changed or overrode:*
+- *What I gave the AI:* I gave Claude Code AI my `planning.md` Documents and Chunking Strategy sections, including the source list, the 500-token chunk size, and the 75-token overlap requirement. I asked it to help design the ingestion and chunking script for my UH dining documents.
+- *What it produced:* It produced a Python ingestion/chunking structure that loaded local and web text sources, cleaned noisy webpage text, stored raw and cleaned files, and split the cleaned documents into chunks with metadata such as source title, source URL, chunk id, and token count.
+- *What I changed or overrode:* I kept the 500-token and 75-token settings from my own plan instead of using a generic character split. I also added/kept manual fallback sources for details that were hard to retrieve cleanly from websites, such as Panda Express entrees, UH dining halls, and meal plan eligibility, so the system could answer my evaluation questions more reliably.
 
 **Instance 2**
 
-- *What I gave the AI:*
-- *What it produced:*
-- *What I changed or overrode:*
+- *What I gave the AI:* I gave Claude Code AI my Retrieval Approach and Evaluation Plan sections from `planning.md`, including the requirement to use `sentence-transformers/all-MiniLM-L6-v2`, retrieve the top 5 chunks, and test the five dining questions.
+- *What it produced:* It produced code for embedding chunks into a local Chroma vector store, retrieving relevant chunks for a user query, and running the five planned evaluation questions. It also helped shape the grounded generation behavior in `query.py`, where retrieved chunks are filtered before being sent to the model.
+- *What I changed or overrode:* I added stricter grounding rules so the app answers only from retrieved documents and returns "I don't have enough information on that" when the retrieved context is not strong enough. I also used a distance threshold and limited the final context to the best chunks instead of passing every top-5 retrieval result directly to the LLM.
